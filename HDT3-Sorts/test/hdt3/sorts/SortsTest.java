@@ -34,7 +34,7 @@ public class SortsTest {
     }
 
     /**
-     * Test of gnomeSort method, of class Sorts.
+     * Test para el metodo gnomeSort, de clase Sorts.
      */
     @Test
     public void testGnomeSort() {
@@ -56,7 +56,7 @@ public class SortsTest {
     }
 
     /**
-     * Test of mergeSort method, of class Sorts.
+     * Test para el metodo mergeSort, de la clase Sorts.
      */
     @Test
     public void testMergeSort() {
@@ -79,7 +79,7 @@ public class SortsTest {
     }
 
     /**
-     * Test of quickSort method, of class Sorts.
+     * Test para el metodo quickSort, de la clase Sorts.
      */
     @Test
     public void testQuickSort() {
@@ -102,7 +102,7 @@ public class SortsTest {
     }
 
     /**
-     * Test of radixSort method, of class Sorts.
+     * Test para el metodo radixSort, de la clase Sorts.
      */
     @Test
     public void testRadixSort() {

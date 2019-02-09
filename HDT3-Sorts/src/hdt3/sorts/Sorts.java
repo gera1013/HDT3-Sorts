@@ -9,6 +9,10 @@ import java.util.Arrays;
  */
 public class Sorts 
 {
+    /**
+     * @param arr, un array de tipo comparable, que es el objeto que se va a ordenar 
+     * @param n, tamaño del array que se ingresa como parametro 
+     */
     static void gnomeSort(Comparable arr[], Comparable n) 
     { 
         Comparable l = 0;
@@ -27,31 +31,38 @@ public class Sorts
                 index--; 
             } 
         } 
-    } 
+    }
     
+    /**
+     * 
+     * @param arr un array de tipo comparable, que es el objeto que se va a ordenar 
+     * @param l indice minimo 
+     * @param m punto medio
+     * @param r indice maximo 
+     */
     void merge(Comparable arr[], int l, int m, int r) 
     { 
-        // Find sizes of two subarrays to be merged 
+        // Tamaño de los dos sub arreglos
         int n1 = m - l + 1; 
         int n2 = r - m; 
   
-        /* Create temp arrays */
+        // Arreglos temporales
         Comparable L[] = new Comparable [n1]; 
         Comparable R[] = new Comparable [n2]; 
   
-        /*Copy data to temp arrays*/
+        // Copiar informacion a los arreglos temporales 
         for (int i=0; i<n1; ++i) 
             L[i] = arr[l + i]; 
         for (int j=0; j<n2; ++j) 
             R[j] = arr[m + 1+ j]; 
   
   
-        /* Merge the temp arrays */
+        /* Unir los arreglos temporales */
   
-        // Initial indexes of first and second subarrays 
+        // Indice inicial de los sub arreglos
         int i = 0, j = 0; 
   
-        // Initial index of merged subarry array 
+        // Indice inicial del arreglo 
         int k = l; 
         while (i < n1 && j < n2) 
         { 
@@ -68,7 +79,7 @@ public class Sorts
             k++; 
         } 
   
-        /* Copy remaining elements of L[] if any */
+        // Se copia el elemento sobrante de L[]
         while (i < n1) 
         { 
             arr[k] = L[i]; 
@@ -76,7 +87,7 @@ public class Sorts
             k++; 
         } 
   
-        /* Copy remaining elements of R[] if any */
+        // Se copia el elemento sobrante de R[]
         while (j < n2) 
         { 
             arr[k] = R[j]; 
@@ -85,44 +96,55 @@ public class Sorts
         } 
     } 
   
-    // Main function that sorts arr[l..r] using 
-    // merge() 
+    /**
+     * 
+     * @param arr, un array de tipo comparable, que es el objeto que se va a ordenar 
+     * @param l siempre tiene valor 0, representa el indice mas pequeño
+     * @param r largo del array - 1
+     */
     void mergeSort(Comparable arr[], int l, int r) 
     { 
         if (l < r) 
         { 
-            // Find the middle point 
+            // Se encuentra el punto intermedio 
             int m = (l+r)/2; 
   
-            // Sort first and second halves 
+            //Se ordenan ambas mitades
             mergeSort(arr, l, m); 
             mergeSort(arr , m+1, r); 
   
-            // Merge the sorted halves 
+            // Union de ambas mitades  
             merge(arr, l, m, r); 
         } 
     }
     
+    /**
+     * 
+     * @param arr un array de tipo comparable, que es el objeto que se va a ordenar 
+     * @param low indice mas pequeño 
+     * @param high indice mas grande 
+     * @return indice numerico 
+     */
+    
     int partition(Comparable arr[], int low, int high) 
     { 
         Comparable pivot = arr[high];  
-        int i = (low-1); // index of smaller element 
+        int i = (low-1); // Indice del elemento mas bajo 
         for (int j=low; j<high; j++) 
         { 
-            // If current element is smaller than or 
-            // equal to pivot 
+            // Si el elemento actual es menor que el pivote 
             if (arr[j].compareTo(pivot) == 0 || arr[j].compareTo(pivot) == -1) 
             { 
                 i++; 
   
-                // swap arr[i] and arr[j] 
+                // Se cambia arr[i] con arr[j] 
                 Comparable temp = arr[i]; 
                 arr[i] = arr[j]; 
                 arr[j] = temp; 
             } 
         } 
   
-        // swap arr[i+1] and arr[high] (or pivot) 
+        // Se cambian arr[i+1] con arr[high]
         Comparable temp = arr[i+1]; 
         arr[i+1] = arr[high]; 
         arr[high] = temp; 
@@ -131,25 +153,29 @@ public class Sorts
     } 
   
   
-    /* The main function that implements QuickSort() 
-      arr[] --> Array to be sorted, 
-      low  --> Starting index, 
-      high  --> Ending index */
+    /**
+     * @param arr un array de tipo comparable, que es el objeto que se va a ordenar 
+     * @param low indice inicial 
+     * @param high inidice final
+     */
     void quickSort(Comparable arr[], int low, int high) 
     { 
         if (low < high) 
         { 
-            /* pi is partitioning index, arr[pi] is  
-              now at right place */
+            //Se parte el indice
             int pi = partition(arr, low, high); 
   
-            // Recursively sort elements before 
-            // partition and after partition 
+            // Ordenamiento antes y despues de la particion 
             quickSort(arr, low, pi-1); 
             quickSort(arr, pi+1, high); 
         } 
     }
     
+    /**
+     * @param arr un array de tipo comparable, que es el objeto que se va a ordenar 
+     * @param n largo del array introducido
+     * @return indice numerico 
+     */
     static int getMax(int arr[], int n) 
     { 
         int mx = arr[0]; 
@@ -159,8 +185,12 @@ public class Sorts
         return mx; 
     } 
   
-    // A function to do counting sort of arr[] according to 
-    // the digit represented by exp. 
+    /**
+     * 
+     * @param arr un array de tipo comparable, que es el objeto que se va a ordenar 
+     * @param n largo del array 
+     * @param exp indice numerico 
+     */
     static void countSort(int arr[], int n, int exp) 
     { 
         int output[] = new int[n]; // output array 
@@ -168,42 +198,47 @@ public class Sorts
         int count[] = new int[10]; 
         Arrays.fill(count,0); 
   
-        // Store count of occurrences in count[] 
+        // Almacena la cantidad de ocurrencias 
         for (i = 0; i < n; i++) 
             count[ (arr[i]/exp)%10 ]++; 
   
-        // Change count[i] so that count[i] now contains 
-        // actual position of this digit in output[] 
+        // Se hace que count[i] tenga ahora la verdadera 
+        // posicion 
         for (i = 1; i < 10; i++) 
             count[i] += count[i - 1]; 
   
-        // Build the output array 
+        // Construccion del array output
         for (i = n - 1; i >= 0; i--) 
         { 
             output[count[ (arr[i]/exp)%10 ] - 1] = arr[i]; 
             count[ (arr[i]/exp)%10 ]--; 
         } 
   
-        // Copy the output array to arr[], so that arr[] now 
-        // contains sorted numbers according to curent digit 
+        // Se copia el array de output al array inicial 
+        // asi este ya tiene los elementos ordenados
         for (i = 0; i < n; i++) 
             arr[i] = output[i]; 
     } 
   
-    // The main function to that sorts arr[] of size n using 
-    // Radix Sort 
+    /**
+     * 
+     * @param arr array de tipo int
+     * @param n largo del array 
+     */
     static void radixSort(int arr[], int n) 
     { 
-        // Find the maximum number to know number of digits 
+        // El numero maximo dentro del array 
         int m = getMax(arr, n); 
   
-        // Do counting sort for every digit. Note that instead 
-        // of passing digit number, exp is passed. exp is 10^i 
-        // where i is current digit number 
+        // Ordenamiento por medio de conteo 
         for (int exp = 1; m/exp > 0; exp *= 10) 
             countSort(arr, n, exp); 
     } 
-  
+    
+    /**
+     * 
+     * @param arr array que se va a imprimir 
+     */
     public static void printArray(Comparable arr[]) 
     {
         for (Comparable arr1 : arr) {

@@ -27,7 +27,7 @@ public class GenerateRandom {
             PrintWriter outputStream = new PrintWriter(fileName);
             outputStream.println(yup);
             outputStream.close();
-            System.out.println("Done");
+            System.out.println("Listo");
           }
 
           catch(Exception e){
