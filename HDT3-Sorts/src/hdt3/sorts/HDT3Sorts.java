@@ -12,7 +12,8 @@ import java.util.Scanner;
  *
  * @author Gerardo
  */
-public class HDT3Sorts {
+public class HDT3Sorts 
+{
 
     /**
      * @param args the command line arguments

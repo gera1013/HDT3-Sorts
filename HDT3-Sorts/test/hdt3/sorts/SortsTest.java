@@ -12,7 +12,8 @@ import static org.junit.Assert.*;
  *
  * @author Gerardo
  */
-public class SortsTest {
+public class SortsTest 
+{
     
     public SortsTest() {
     }

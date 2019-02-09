@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.io.PrintWriter;
 import java.io.FileNotFoundException;
 
-public class GenerateRandom {
+public class GenerateRandom 
+{
 
     Scanner scan = new Scanner(System.in);
     Random rand = new Random();
