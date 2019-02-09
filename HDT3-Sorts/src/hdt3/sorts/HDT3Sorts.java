@@ -28,7 +28,8 @@ public class HDT3Sorts {
                 numerosGenerados = scan.nextInt();
             }
         }
-        catch(InputMismatchException e){
+        catch(InputMismatchException e)
+        {
             System.out.println("Por favor reinice el programa e ingrese un numero");
         }
         
@@ -56,11 +57,13 @@ public class HDT3Sorts {
             }
             
         }
-        catch(InputMismatchException e){
+        catch(InputMismatchException e)
+        {
             System.out.println("Por favor reinice el programa e ingrese un numero");
         }
         
-        switch(dec){
+        switch(dec)
+        {
             case 1:
                 Sorts.gnomeSort(numeros, numeros.length);
             break;

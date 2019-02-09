@@ -18,12 +18,14 @@ public class Sorts
         Comparable l = 0;
         int index = 0; 
   
-        while (n.compareTo(index) == 1) { 
+        while (n.compareTo(index) == 1) 
+        { 
             if (l.compareTo(index) == 0) 
                 index++; 
             if (arr[index].compareTo(arr[index - 1]) == 1 || arr[index].compareTo(arr[index - 1]) == 0) 
                 index++; 
-            else { 
+            else 
+            { 
                 Comparable temp = 0; 
                 temp = arr[index]; 
                 arr[index] = arr[index - 1]; 
@@ -241,7 +243,8 @@ public class Sorts
      */
     public static void printArray(Comparable arr[]) 
     {
-        for (Comparable arr1 : arr) {
+        for (Comparable arr1 : arr) 
+        {
             System.out.println(arr1);
         }
     }
