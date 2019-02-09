@@ -1,10 +1,11 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package hdt3.sorts;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -12,65 +13,75 @@ import java.util.Scanner;
  *
  * @author Gerardo
  */
-public class HDT3Sorts 
-{
+public class HDT3Sorts {
 
     /**
      * @param args the command line arguments
-     * @throws java.io.FileNotFoundException
      */
-    public static void main(String[] args) throws FileNotFoundException 
+    public static void main(String[] args) 
     {
         Scanner scan = new Scanner(System.in);
-        Random rand = new Random();
-        ArrayList<Integer> rndNum= new ArrayList<Integer>();
+        Sorts sorting = new Sorts();
+        int numerosGenerados = 0;
         
-        int Num = 0;
-                
-        while(Num < 10 || Num > 3000) 
+        try
         {
-            System.out.println("Ingrese la cantidad de datos al que le desea hacer sort. ");
-            Num = scan.nextInt();
+            while(numerosGenerados < 10 || numerosGenerados > 3000)
+            {
+                System.out.println("Ingrese la cantidad de numeros que desea ordenar");
+                numerosGenerados = scan.nextInt();
+            }
         }
-        int cNum = Num;
-        for (int i = 0; i < cNum; i++) {
-            int number = rand.nextInt(3000 + 1);
-            rndNum.add(number);
+        catch(InputMismatchException e){
+            System.out.println("Por favor reinice el programa e ingrese un numero");
         }
-
-        String yup = rndNum.toString();
-
-        String fileName = "RND.txt";
-        try {
-            PrintWriter outputStream = new PrintWriter(fileName);
-            outputStream.println(yup);
-            outputStream.close();
-            System.out.println("Listo");
-        }
-
-        catch(FileNotFoundException e){
-            e.printStackTrace();
-        }
-
-        Comparable numeros[] = new Comparable[Num];
-        Scanner read = new Scanner(new File("RND.txt"));
-        read.useDelimiter(",");
-        String data;
         
-        for(int i = 0; i < Num ; i++)
+        Comparable  numeros[];
+        numeros = new Comparable [numerosGenerados];
+        
+        for(int i = 0; i < numerosGenerados; i++)
         {
-            data = read.next();
-            numeros[i] = data;
+            Random rand = new Random();
+            numeros[i] = rand.nextInt(numerosGenerados);
         }
         
-        Sorts sorting = new Sorts();        
+        int dec = 0;
         
-        Sorts.printArray(numeros);
-        Sorts.gnomeSort(numeros, numeros.length);
-        sorting.mergeSort(numeros, 0, numeros.length-1);
-        sorting.quickSort(numeros, 0, numeros.length-1);
-        //Sorts.radixSort(numeros, numeros.length);
+        try
+        {
+            while(dec < 1 || dec > 4)
+            {
+                System.out.println("Ingrese el numero del metodo de sorting que desea utilizar");
+                System.out.println("1. Gnome Sort");
+                System.out.println("2. Merge Sort");
+                System.out.println("3. Quick Sort");
+                System.out.println("4. Radix Sort");
+                dec = scan.nextInt();
+            }
+            
+        }
+        catch(InputMismatchException e){
+            System.out.println("Por favor reinice el programa e ingrese un numero");
+        }
+        
+        switch(dec){
+            case 1:
+                Sorts.gnomeSort(numeros, numeros.length);
+            break;
+            
+            case 2:
+                sorting.mergeSort(numeros, 0, numeros.length-1);
+            break;
+            
+            case 3:
+                sorting.quickSort(numeros, 0, numeros.length-1);
+            break;
+            
+            case 4:
+                int[] arrr = new int[numerosGenerados];
+                Sorts.radixSort(arrr, arrr.length);
+            break;
+        }
         Sorts.printArray(numeros);
     }
-    
 }
