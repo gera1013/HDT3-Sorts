@@ -1,3 +1,5 @@
+package hdt3;
+
 import java.util.Scanner;
 import java.util.Random;
 import java.util.ArrayList;
