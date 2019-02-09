@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package hdt3.sorts;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -23,32 +20,56 @@ public class HDT3Sorts {
      */
     public static void main(String[] args) throws FileNotFoundException 
     {
-        ArrayList<String> array = new ArrayList<>();
-        Scanner read = new Scanner(new File("doc.txt"));
-        read.useDelimiter(" ");
+        Scanner scan = new Scanner(System.in);
+        Random rand = new Random();
+        ArrayList<Integer> rndNum= new ArrayList<Integer>();
+        
+        int Num = 0;
+                
+        while(Num < 10 || Num > 3000) 
+        {
+            System.out.println("Ingrese la cantidad de datos al que le desea hacer sort. ");
+            Num = scan.nextInt();
+        }
+        int cNum = Num;
+        for (int i = 0; i < cNum; i++) {
+            int number = rand.nextInt(3000 + 1);
+            rndNum.add(number);
+        }
+
+        String yup = rndNum.toString();
+
+        String fileName = "RND.txt";
+        try {
+            PrintWriter outputStream = new PrintWriter(fileName);
+            outputStream.println(yup);
+            outputStream.close();
+            System.out.println("Listo");
+        }
+
+        catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+
+        Comparable numeros[] = new Comparable[Num];
+        Scanner read = new Scanner(new File("RND.txt"));
+        read.useDelimiter(",");
         String data;
         
-        while(read.hasNext())
+        for(int i = 0; i < Num ; i++)
         {
             data = read.next();
-            array.add(data);
+            numeros[i] = data;
         }
         
-        Sorts sorting = new Sorts();
-        int numerosGenerados = 3000;
-        int  numeros[];
-        numeros = new int [numerosGenerados];
+        Sorts sorting = new Sorts();        
         
-        for(int i = 0; i < numerosGenerados; i++)
-        {
-            Random rand = new Random();
-            numeros[i] = rand.nextInt(numerosGenerados);
-        }
-        
-        //Sorts.gnomeSort(numeros, numeros.length);
-        //sorting.mergeSort(numeros, 0, numeros.length-1);
-        //sorting.quickSort(numeros, 0, numeros.length-1);
+        Sorts.printArray(numeros);
+        Sorts.gnomeSort(numeros, numeros.length);
+        sorting.mergeSort(numeros, 0, numeros.length-1);
+        sorting.quickSort(numeros, 0, numeros.length-1);
         //Sorts.radixSort(numeros, numeros.length);
+        Sorts.printArray(numeros);
     }
     
 }
