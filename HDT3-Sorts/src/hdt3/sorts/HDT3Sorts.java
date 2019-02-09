@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package hdt3.sorts;
 
 import java.util.InputMismatchException;
@@ -82,6 +78,7 @@ public class HDT3Sorts {
                 Sorts.radixSort(arrr, arrr.length);
             break;
         }
+        
         Sorts.printArray(numeros);
     }
 }
