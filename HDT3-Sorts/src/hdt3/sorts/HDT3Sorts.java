@@ -5,7 +5,11 @@
  */
 package hdt3.sorts;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  *
@@ -15,8 +19,21 @@ public class HDT3Sorts {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.FileNotFoundException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException 
+    {
+        ArrayList<String> array = new ArrayList<>();
+        Scanner read = new Scanner(new File("doc.txt"));
+        read.useDelimiter(" ");
+        String data;
+        
+        while(read.hasNext())
+        {
+            data = read.next();
+            array.add(data);
+        }
+        
         Sorts sorting = new Sorts();
         int numerosGenerados = 3000;
         int  numeros[];
@@ -31,7 +48,7 @@ public class HDT3Sorts {
         //Sorts.gnomeSort(numeros, numeros.length);
         //sorting.mergeSort(numeros, 0, numeros.length-1);
         //sorting.quickSort(numeros, 0, numeros.length-1);
-        Sorts.radixSort(numeros, numeros.length);
+        //Sorts.radixSort(numeros, numeros.length);
     }
     
 }
