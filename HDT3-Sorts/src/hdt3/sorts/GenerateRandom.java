@@ -1,4 +1,4 @@
-package hdt3;
+package hdt3.sorts;
 
 import java.util.Scanner;
 import java.util.Random;
